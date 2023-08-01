@@ -34,6 +34,12 @@ const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './reso
       newCssText = newCssText.replace(actualUrl, relativePath);
     }
 
+    // Aggiungi un ritorno a capo prima di ogni @font-face tranne il primo
+    newCssText = newCssText.split('@font-face').join('\n@font-face').replace('\n', '');
+
+    // Sostituisci tutti gli apici semplici con doppi apici
+    newCssText = newCssText.replace(/'/g, '"');
+
     // Assicurati che la cartella di destinazione per il file CSS esista
     fs.mkdirSync(path.dirname(cssOutputPath), { recursive: true });
 
