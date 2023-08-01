@@ -13,23 +13,15 @@ const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './reso
     // Assicurati che la cartella di destinazione esista
     fs.mkdirSync(destinationFolder, { recursive: true });
 
-    // Scarica il file CSS per i .ttf
-    const responseTTF = await axios.get(url);
-    const cssTextTTF = responseTTF.data;
-
     // Scarica il file CSS per i .woff2
     const responseWOFF2 = await axios.get(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36', // User Agent per un moderno browser Chrome
       }
     });
-    const cssTextWOFF2 = responseWOFF2.data;
-
-    // Combina i due CSS in un unico testo
-    let combinedCssText = cssTextWOFF2 + '\n' + cssTextTTF;
 
     // Rimuove i commenti
-    combinedCssText = combinedCssText.replace(/\/\*[\s\S]*?\*\//g, '');
+    combinedCssText = responseWOFF2.data.replace(/\/\*[\s\S]*?\*\//g, '');
 
     // Trova tutti gli URL dei file dei font
     const fontUrls = combinedCssText.match(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g);
