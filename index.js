@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
+const axios = require('axios');
+const path = require('path');
+
 const cssUrl = process.argv[2] || null;
 const destinationFolder = process.argv[3] || './resources/assets/fonts/';
 const cssOutputPath = process.argv[4] || './resources/styles/common/_fonts.scss';
@@ -29,6 +33,9 @@ const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './reso
       const relativePath = path.relative(path.dirname(cssOutputPath), localPath);
       newCssText = newCssText.replace(actualUrl, relativePath);
     }
+
+    // Assicurati che la cartella di destinazione per il file CSS esista
+    fs.mkdirSync(path.dirname(cssOutputPath), { recursive: true });
 
     // Salva il nuovo file CSS
     fs.writeFileSync(cssOutputPath, newCssText);
