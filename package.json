@@ -1,0 +1,39 @@
+{
+  "name": "gfontizer",
+  "version": "1.0.0",
+  "description": "Download Google Fonts for local provisioning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "gfontizer": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kokiddp/gfontizer.git"
+  },
+  "keywords": [
+    "gfonts",
+    "fonts",
+    "sage",
+    "scss",
+    "google",
+    "fonts",
+    "googlefonts",
+    "wordpress"
+  ],
+  "author": {
+    "name": "Gabriele Coquillard",
+    "email": "gabriele.coquillard@gmail.com",
+    "url": "https://www.github.com/kokiddp"
+  },
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/kokiddp/gfontizer/issues"
+  },
+  "homepage": "https://github.com/kokiddp/gfontizer#readme",
+  "devDependencies": {
+    "axios": "^1.4.0"
+  }
+}
