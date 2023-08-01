@@ -6,7 +6,7 @@ const path = require('path');
 
 const cssUrl = process.argv[2] || null;
 const destinationFolder = process.argv[3] || './resources/assets/fonts/';
-const cssOutputPath = process.argv[4] || './resources/styles/common/_fonts.scss';
+const cssOutputPath = process.argv[4] || './resources/assets/styles/common/_fonts.scss';
 
 const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './resources/assets/fonts/', cssOutputPath = './resources/styles/common/_fonts.scss') => {
   try {
