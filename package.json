@@ -1,6 +1,6 @@
 {
   "name": "gfontizer",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Download Google Fonts for local provisioning",
   "main": "index.js",
   "scripts": {

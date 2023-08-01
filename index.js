@@ -26,7 +26,10 @@ const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './reso
     const cssTextWOFF2 = responseWOFF2.data;
 
     // Combina i due CSS in un unico testo
-    let combinedCssText = cssTextTTF + '\n' + cssTextWOFF2;
+    let combinedCssText = cssTextWOFF2 + '\n' + cssTextTTF;
+
+    // Rimuove i commenti
+    combinedCssText = combinedCssText.replace(/\/\*[\s\S]*?\*\//g, '');
 
     // Trova tutti gli URL dei file dei font
     const fontUrls = combinedCssText.match(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g);
@@ -44,11 +47,14 @@ const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './reso
       combinedCssText = combinedCssText.replace(actualUrl, relativePath);
     }
 
-    // Aggiungi un ritorno a capo prima di ogni @font-face tranne il primo
-    combinedCssText = combinedCssText.split('@font-face').join('\n@font-face').replace('\n', '');
-
     // Sostituisci tutti gli apici semplici con doppi apici
     combinedCssText = combinedCssText.replace(/'/g, '"');
+
+    // Sostituisci tutti i doppi ritorni a capo con un singolo ritorno a capo
+    combinedCssText = combinedCssText.replace(/\n{2,}/g, '\n');
+
+    // Aggiungi un ritorno a capo prima di ogni @font-face tranne il primo
+    combinedCssText = combinedCssText.split('@font-face').join('\n@font-face').replace('\n', '');
 
     // Assicurati che la cartella di destinazione per il file CSS esista
     fs.mkdirSync(path.dirname(cssOutputPath), { recursive: true });
