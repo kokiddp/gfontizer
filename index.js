@@ -6,9 +6,9 @@ const path = require('path');
 
 const cssUrl = process.argv[2] || null;
 const destinationFolder = process.argv[3] || './resources/assets/fonts/';
-const cssOutputPath = process.argv[4] || './resources/assets/styles/common/_fonts.scss';
+const cssOutputPath = process.argv[4] || './resources/assets/styles/common/_gfonts.scss';
 
-const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './resources/assets/fonts/', cssOutputPath = './resources/assets/styles/common/_fonts.scss') => {
+const downloadFontsAndCreateStylesheet = async (url, destinationFolder = './resources/assets/fonts/', cssOutputPath = './resources/assets/styles/common/_gfonts.scss') => {
   try {
     // Assicurati che la cartella di destinazione esista
     fs.mkdirSync(destinationFolder, { recursive: true });
